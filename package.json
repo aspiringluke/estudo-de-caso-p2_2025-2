@@ -1,0 +1,29 @@
+{
+  "name": "estudo-de-caso-p2_2025-2",
+  "version": "0.1.0",
+  "description": "Estudo de caso P2",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aspiringluke/estudo-de-caso-p2_2025-2.git"
+  },
+  "author": "Lucas Paulino Gomes",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/aspiringluke/estudo-de-caso-p2_2025-2/issues"
+  },
+  "homepage": "https://github.com/aspiringluke/estudo-de-caso-p2_2025-2#readme",
+  "devDependencies": {
+    "electron": "^38.4.0"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "knex": "^3.1.0",
+    "mysql2": "^3.15.3"
+  }
+}
