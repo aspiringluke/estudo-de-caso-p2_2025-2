@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Ordem de Serviço</title>
+    <style>
+        /* --- ESTILOS REAPROVEITADOS DO SEU INDEX.EJS --- */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1 {
+            color: #1a1a1a;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        thead {
+            background-color: #007bff;
+            color: white;
+        }
+        th, td {
+            padding: 14px 18px;
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .btn {
+            cursor: pointer;
+            border: none;
+            padding: 10px 16px; /* Aumentei o padding */
+            border-radius: 4px;
+            color: white;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .btn.concluir {
+            background-color: #28a745;
+        }
+        .btn.cancelar {
+            background-color: #dc3545;
+        }
+
+        /* --- NOVOS ESTILOS PARA O FORMULÁRIO --- */
+        .form-container {
+            background-color: #ffffff;
+            padding: 25px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            max-width: 600px; /* Limita a largura do formulário */
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+        .form-group input[type="text"],
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box; /* Garante que o padding não estoure a largura */
+            font-size: 14px;
+        }
+        .form-group textarea {
+            resize: vertical; /* Permite redimensionar verticalmente */
+            min-height: 100px;
+        }
+        .btn-primary {
+            background-color: #007bff; /* Azul do cabeçalho da tabela */
+            font-size: 16px;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .link-voltar {
+            display: inline-block;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .link-voltar:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cadastrar Nova Ordem de Serviço</h1>
+
+    <div class="form-container">
+        <form action="/os/nova" method="POST">
+            
+            <div class="form-group">
+                <label for="cliente_nome">Nome do Cliente</label>
+                <input type="text" id="cliente_nome" name="cliente_nome" required>
+            </div>
+
+            <div class="form-group">
+                <label for="equipamento">Equipamento</label>
+                <input type="text" id="equipamento" name="equipamento" required>
+            </div>
+
+            <div class="form-group">
+                <label for="descricao_problema">Descrição do Problema</label>
+                <textarea id="descricao_problema" name="descricao_problema" rows="4" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Cadastrar Ordem</button>
+        </form>
+    </div>
+
+    <a href="/" class="link-voltar">← Voltar para o Painel</a>
+</body>
+</html>

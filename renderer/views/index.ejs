@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordens de Serviço</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1 {
+            color: #1a1a1a;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        thead {
+            background-color: #007bff;
+            color: white;
+        }
+        th, td {
+            padding: 14px 18px;
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+        tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+        .status {
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 15px;
+            color: white;
+        }
+        .status-aberto {
+            background-color: #dc3545;
+        }
+        .status-andamento {
+            background-color: #ffc107;
+        }
+        .status-concluído {
+            background-color: #28a745;
+        }
+        .no-data {
+            color: #777;
+            font-style: italic;
+        }
+        .form-acao {
+            display: inline-block;
+            margin-right: 5px;
+        }
+        .btn {
+            cursor: pointer;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            color: white;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .btn.concluir {
+            background-color: #28a745; 
+        }
+        .btn.concluir:hover {
+            background-color: #218838;
+        }
+        .btn.cancelar {
+            background-color: #dc3545;
+        }
+        .btn.cancelar:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Painel de Ordens de Serviço</h1>
+    <a href="/os/nova" class="btn" style="background-color: #007bff;">+ Criar Nova OS</a>
+
+    <% if (values) { %>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cliente</th>
+                    <th>Equipamento</th>
+                    <th>Descrição do Problema</th>
+                    <th>Status</th>
+                    <th>Data de Criação</th>
+                    <th>Ações</th> </tr>
+            </thead>
+            
+            <tbody>
+                <% values.forEach(ordem => { %>
+                    <tr>
+                        <td><%= ordem.id %></td>
+                        <td><%= ordem.cliente_nome %></td>
+                        <td><%= ordem.equipamento %></td>
+                        <td><%= ordem.descricao_problema %></td>
+                        <td>
+                            <span class="status status-<%= ordem.status.toLowerCase() %>">
+                                <%= ordem.status %>
+                            </span>
+                        </td>
+                        <td>
+                            <%= new Date(ordem.data_criacao).toLocaleString('pt-BR') %>
+                        </td>
+                        
+                        <td>
+                            <form action="/os/<%= ordem.id %>/concluir" method="POST" class="form-acao">
+                                <input type="hidden" name="_method" value="PUT">
+                                <button type="submit" class="btn concluir">Concluir</button>
+                            </form>
+
+                            <form action="/os/<%= ordem.id %>" method="POST" class="form-acao">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn cancelar">Cancelar</button>
+                            </form>
+                        </td>
+                        </tr>
+                <% }) %>
+            </tbody>
+        </table>
+
+    <% } else { %>
+        <p class="no-data">Nenhuma ordem de serviço encontrada.</p>
+    <% } %>
+</body>
+</html>
